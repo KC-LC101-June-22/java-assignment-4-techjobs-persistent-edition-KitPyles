@@ -21,8 +21,8 @@ public class Job extends AbstractEntity{
     
     // Getters and setters.
     
-    public String getEmployer() {
-        return employer.getName();
+    public Employer getEmployer() {
+        return employer;
     }
     
     public void setEmployer(Employer employer) {
