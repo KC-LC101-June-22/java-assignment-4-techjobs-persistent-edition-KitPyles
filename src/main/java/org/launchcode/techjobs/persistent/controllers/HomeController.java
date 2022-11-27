@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.*;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by LaunchCode
@@ -66,8 +67,14 @@ public class HomeController {
     
     @GetMapping("view/{jobId}")
     public String displayViewJob(Model model, @PathVariable int jobId) {
-        
-        return "view";
+        Optional<Job> job = jobRepository.findById(jobId);
+        if (job.isPresent()){
+            model.addAttribute("title","This is a test");
+            model.addAttribute("job",job);
+            return "view";
+        } else {
+            return "view";
+        }
     }
     
     
