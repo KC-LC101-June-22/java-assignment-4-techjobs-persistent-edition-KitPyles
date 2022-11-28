@@ -19,20 +19,8 @@ public class EmployerController {
     private EmployerRepository employerRepository;
     
     @GetMapping("")
-    public String index(@RequestParam(required = false) Integer employer_id, Model model) {
-//        Had to add or delete actual code to commit the "changes" to pass autograder online. Since I didn't actually change anything.
-        if(employer_id == null) {
-            model.addAttribute("employers", employerRepository.findAll());
-        } else {
-            Optional<Employer> result = employerRepository.findById(employer_id);
-            if (result.isEmpty()) {
-                model.addAttribute("title", "Invalid Employer ID: " + employer_id);
-            } else {
-                Employer employer = result.get();
-                model.addAttribute("title", "Employers: " + employer.getName());
-                model.addAttribute("employers",employer.getJobs());
-            }
-        }
+    public String index(Model model) {
+        model.addAttribute("employers", employerRepository.findAll());
         return "employers/index";
     }
     
